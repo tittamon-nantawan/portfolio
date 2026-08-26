@@ -42,6 +42,32 @@
   a{color:inherit;}
   ::selection{background:var(--pink); color:var(--ink);}
 
+  /* ---------- Sticky top nav ---------- */
+  .topnav{
+    position:sticky; top:0; left:0; right:0; z-index:70;
+    background:rgba(255,249,252,0.88); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav-inner{
+    display:flex; align-items:center; gap:8px;
+    max-width:1400px; margin:0 auto;
+    padding:0 8vw; overflow-x:auto; white-space:nowrap;
+    scrollbar-width:none;
+  }
+  .topnav-inner::-webkit-scrollbar{display:none;}
+  .topnav-link{
+    font-family:'Kanit',sans-serif; font-weight:500; font-size:0.78rem;
+    color:var(--ink-soft); padding:16px 14px; letter-spacing:0.01em;
+    border-bottom:2px solid transparent; transition:color .2s, border-color .2s;
+    flex:0 0 auto;
+  }
+  .topnav-link:hover, .topnav-link:focus-visible{color:var(--blue-deep); outline:none;}
+  .topnav-link.active{color:var(--pink-deep); border-bottom-color:var(--pink-deep); font-weight:600;}
+  @media (max-width:700px){
+    .topnav-link{font-size:0.7rem; padding:13px 10px;}
+  }
+  html{scroll-padding-top:52px;}
+
   /* ---------- Side nav dots ---------- */
   .sidenav{
     position:fixed; right:28px; top:50%; transform:translateY(-50%);
@@ -425,6 +451,15 @@
 </head>
 <body>
 
+<nav class="topnav" aria-label="Primary navigation">
+  <div class="topnav-inner">
+    <a href="#corporate" class="topnav-link">Chapter One — Corporate</a>
+    <a href="#cosplay" class="topnav-link">Selected Work — Influencer Collaborations</a>
+    <a href="#network" class="topnav-link">Chapter Two — Independent Practice</a>
+    <a href="#contact" class="topnav-link">Get in Touch</a>
+  </div>
+</nav>
+
 <nav class="sidenav" aria-label="Section navigation">
   <a href="#hero" data-label="Hero" class="active"></a>
   <a href="#corporate" data-label="Kadokawa Amarin"></a>
@@ -437,7 +472,7 @@
 <!-- 1 : HERO -->
 <section id="hero">
   <div class="hero-photo"><img src="assets/tittamon-portrait.jpg" alt="Portrait of Tittamon Nantawan at Anime Festival Asia Thailand 2026" loading="eager" fetchpriority="high"></div>
-  <div class="hero-kicker mono">PORTFOLIO — DRAFT V1</div>
+  <div class="hero-kicker mono">PORTFOLIO</div>
   <div class="hero-name-th">ธฤตมน นันทวรรณ</div>
   <div class="hero-name-en">Tittamon Nantawan</div>
   <p class="hero-role">Digital Marketing Supervisor operating at <strong>manager level</strong> — performance marketing, budget ownership, and content strategy for one of Thailand's leading ACG publishers, alongside an independent influencer &amp; PR agency.</p>
@@ -463,6 +498,7 @@
     <div class="stat-cell"><div class="n">5</div><div class="l">Team Led</div></div>
     <div class="stat-cell"><div class="n">+55%</div><div class="l">Organic Traffic</div></div>
     <div class="stat-cell"><div class="n">+43.5%</div><div class="l">Google ROAS YoY</div></div>
+    <div class="stat-cell"><div class="n">+122.3%</div><div class="l">Social Ads ROAS YoY</div></div>
   </div>
 
   <div class="case-grid">
@@ -560,7 +596,7 @@
 
 <!-- 2.5 : COSPLAYER & INFLUENCER CAMPAIGNS -->
 <section id="cosplay">
-  <div class="eyebrow"><span class="kanji">選</span> Selected Work — Cosplayer Collaborations</div>
+  <div class="eyebrow"><span class="kanji">選</span> Selected Work — Influencer Collaborations</div>
   <h2 class="section-title reveal">Cosplayer &amp; Influencer Campaigns</h2>
   <p class="section-lede reveal">Character-led product launches — pairing cosplayers and influencers with book, artbook, and light-novel releases across the Phoenix Next catalog.</p>
 
@@ -807,6 +843,7 @@
 
 <script>
   const links = document.querySelectorAll('.sidenav a');
+  const topLinks = document.querySelectorAll('.topnav-link');
   const sections = document.querySelectorAll('section[id]');
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -814,6 +851,10 @@
         links.forEach(l=>l.classList.remove('active'));
         const active = document.querySelector('.sidenav a[href="#'+e.target.id+'"]');
         if(active) active.classList.add('active');
+
+        topLinks.forEach(l=>l.classList.remove('active'));
+        const activeTop = document.querySelector('.topnav-link[href="#'+e.target.id+'"]');
+        if(activeTop) activeTop.classList.add('active');
       }
     });
   }, {threshold:0.5});
