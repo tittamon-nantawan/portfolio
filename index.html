@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="th" class="no-js">
+<head>
+<script>document.documentElement.classList.replace('no-js','js');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tittamon Nantawan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFF9FC;
+    --paper-blue:#EFF6FF;
+    --paper-pink:#FDF1F7;
+    --ink:#332F4B;
+    --ink-soft:#4A4568;
+    --line:#E6DEF0;
+    --blue:#8FC6F2;
+    --blue-deep:#3E86C4;
+    --pink:#F7B3D8;
+    --pink-deep:#DD5C99;
+    --muted:#8985A3;
+    --muted-on-paper:#8985A3;
+    --text-on-paper:#332F4B;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  .display{font-family:'Kanit',sans-serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  ::selection{background:var(--pink); color:var(--ink);}
+
+  /* ---------- Side nav dots ---------- */
+  .sidenav{
+    position:fixed; right:28px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; gap:16px; z-index:50;
+  }
+  .sidenav a{
+    width:10px; height:10px; border-radius:50%;
+    border:1.5px solid #C9BFDD; display:block;
+    transition:background .25s, border-color .25s, transform .25s;
+  }
+  .sidenav a:hover, .sidenav a:focus-visible{
+    border-color:var(--blue-deep); transform:scale(1.3);
+    outline:2px solid var(--blue-deep); outline-offset:3px;
+  }
+  .sidenav a.active{background:var(--pink-deep); border-color:var(--pink-deep);}
+  @media (max-width:800px){ .sidenav{display:none;} }
+
+  section{
+    min-height:100vh;
+    padding:120px 8vw;
+    position:relative;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  #corporate{background:var(--paper-blue);}
+  #cosplay{background:var(--paper);}
+  #network{background:var(--paper-pink);}
+  #timeline{background:var(--paper-blue);}
+
+  .eyebrow{
+    font-family:'Kanit',sans-serif; font-weight:600; font-size:0.8rem;
+    letter-spacing:0.28em; text-transform:uppercase; color:var(--blue-deep);
+    display:flex; align-items:center; gap:14px; margin-bottom:20px;
+  }
+  .eyebrow .kanji{
+    font-size:1rem; letter-spacing:0.05em; color:var(--pink-deep);
+  }
+  .eyebrow::after{
+    content:""; flex:1; height:1px; background:var(--line); max-width:120px;
+  }
+
+  /* ---------- HERO ---------- */
+  #hero{
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(247,179,216,0.45), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -10% 110%, rgba(143,198,242,0.4), transparent 60%),
+      var(--paper);
+    align-items:flex-start;
+    position:relative;
+  }
+  .hero-photo{
+    position:absolute; top:110px; right:7vw;
+    width:200px; height:200px; border-radius:50%; overflow:hidden;
+    border:5px solid #fff; box-shadow:0 20px 45px -20px rgba(76,60,110,0.45);
+    z-index:3;
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block;}
+  @media (max-width:900px){
+    .hero-photo{position:static; width:130px; height:130px; margin-bottom:22px; border-width:4px;}
+  }
+  .hero-kicker{
+    font-family:'Kanit',sans-serif; font-weight:500; font-size:0.95rem;
+    color:var(--muted); letter-spacing:0.05em; margin-bottom:18px;
+  }
+  .hero-name-th{
+    font-family:'Kanit',sans-serif; font-weight:800; font-size:clamp(2.6rem,7vw,5.2rem);
+    line-height:1.05; color:var(--ink); margin-bottom:6px;
+  }
+  .hero-name-en{
+    font-family:'Kanit',sans-serif; font-weight:400; font-style:italic; font-size:clamp(1.1rem,2.2vw,1.5rem);
+    color:var(--muted); margin-bottom:30px; letter-spacing:0.02em;
+  }
+  .hero-role{
+    font-size:clamp(1.05rem,2vw,1.35rem); color:var(--ink-soft); max-width:640px; margin-bottom:44px;
+    font-weight:300;
+  }
+  .hero-role strong{color:var(--pink-deep); font-weight:600;}
+
+  /* Obi band — signature element, recolored as a blue-to-pink sash */
+  .obi{
+    position:relative;
+    background:linear-gradient(100deg, var(--blue-deep) 0%, var(--pink-deep) 100%);
+    color:#FFFDFE;
+    padding:18px 28px;
+    display:inline-flex; align-items:center; gap:26px; flex-wrap:wrap;
+    box-shadow:0 18px 40px -14px rgba(221,92,153,0.45);
+    max-width:100%;
+    border-radius:2px;
+  }
+  .obi::before, .obi::after{
+    content:""; position:absolute; top:0; bottom:0; width:14px; background:rgba(0,0,0,0.12);
+  }
+  .obi::before{left:-14px; clip-path:polygon(100% 0,100% 100%,0 100%);}
+  .obi::after{right:-14px; clip-path:polygon(0 0,100% 100%,0 100%);}
+  .obi-stat{display:flex; flex-direction:column; padding:0 10px;}
+  .obi-stat + .obi-stat{border-left:1px solid rgba(255,255,255,0.4);}
+  .obi-num{font-family:'Kanit',sans-serif; font-weight:700; font-size:1.6rem; line-height:1;}
+  .obi-label{font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; opacity:0.92; margin-top:4px;}
+
+  .scroll-cue{
+    position:absolute; bottom:44px; left:8vw;
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--muted);
+    display:flex; align-items:center; gap:10px; letter-spacing:0.08em;
+  }
+  .scroll-cue .line{width:1px; height:34px; background:#C9BFDD; position:relative; overflow:hidden;}
+  .scroll-cue .line::after{
+    content:""; position:absolute; top:-100%; left:0; width:100%; height:100%;
+    background:var(--pink-deep); animation:drip 1.8s ease-in-out infinite;
+  }
+  @keyframes drip{ 0%{top:-100%;} 60%{top:100%;} 100%{top:100%;} }
+
+  /* ---------- Scroll reveal ---------- */
+  /* Only hides content once JS confirms it's running (html.js) — degrades gracefully without JS */
+  html.js .reveal{
+    opacity:0; transform:translateY(30px);
+    transition:opacity .7s cubic-bezier(.16,.8,.4,1), transform .7s cubic-bezier(.16,.8,.4,1);
+  }
+  html.js .reveal.visible{opacity:1; transform:translateY(0);}
+  html.js .stat-grid.reveal .stat-cell{
+    opacity:0; transform:translateY(16px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  html.js .stat-grid.reveal.visible .stat-cell{opacity:1; transform:translateY(0);}
+  .stat-grid.reveal.visible .stat-cell:nth-child(1){transition-delay:.03s;}
+  .stat-grid.reveal.visible .stat-cell:nth-child(2){transition-delay:.09s;}
+  .stat-grid.reveal.visible .stat-cell:nth-child(3){transition-delay:.15s;}
+  .stat-grid.reveal.visible .stat-cell:nth-child(4){transition-delay:.21s;}
+  .stat-grid.reveal.visible .stat-cell:nth-child(5){transition-delay:.27s;}
+  .stat-grid.reveal.visible .stat-cell:nth-child(6){transition-delay:.33s;}
+
+  /* ---------- Section headers ---------- */
+  h2.section-title{
+    font-family:'Kanit',sans-serif; font-weight:700; font-size:clamp(1.8rem,3.4vw,2.6rem);
+    color:var(--ink); margin-bottom:14px; max-width:780px;
+  }
+  p.section-lede{
+    color:var(--ink-soft); max-width:620px; font-size:1rem; margin-bottom:56px; font-weight:300;
+  }
+
+  /* ---------- Stat grid ---------- */
+  .stat-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    margin-bottom:56px; max-width:920px;
+  }
+  .stat-cell{background:#FFFFFF; padding:22px 18px;}
+  .stat-cell .n{font-family:'Kanit',sans-serif; font-weight:700; font-size:1.7rem; color:var(--blue-deep);}
+  .stat-cell .l{font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--muted); margin-top:6px; text-transform:uppercase; letter-spacing:0.04em;}
+
+  /* ---------- Case study cards ---------- */
+  .case-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px; max-width:1100px;
+  }
+  .case-card{
+    background:#FFFFFF; color:var(--text-on-paper);
+    padding:30px 28px 26px; position:relative;
+    border-top:5px solid var(--blue);
+    border-radius:4px;
+    box-shadow:0 20px 45px -26px rgba(76,60,110,0.35);
+  }
+  #network .case-card{ border-top-color:var(--pink); }
+  .case-card .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.07em; text-transform:uppercase;
+    color:var(--blue-deep); font-weight:600; margin-bottom:10px; display:block;
+  }
+  #network .case-card .tag{ color:var(--pink-deep); }
+  .case-card h3{
+    font-family:'Kanit',sans-serif; font-weight:600; font-size:1.25rem; margin-bottom:6px; line-height:1.25;
+  }
+  .case-card .meta{font-size:0.78rem; color:var(--muted-on-paper); margin-bottom:14px; font-weight:500;}
+  .case-card p{font-size:0.92rem; color:#4A4568; margin-bottom:16px;}
+  .case-figures{display:flex; flex-wrap:wrap; gap:10px 22px; border-top:1px dashed #E6DEF0; padding-top:14px;}
+  .case-figures div{display:flex; flex-direction:column;}
+  .case-figures .fn{font-family:'Kanit',sans-serif; font-weight:700; color:var(--pink-deep); font-size:1.1rem;}
+  .case-figures .fl{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; color:var(--muted-on-paper); text-transform:uppercase;}
+
+  /* clickable coverage links inside case cards */
+  .case-links{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+  .case-links a{
+    font-family:'IBM Plex Mono',monospace; font-size:0.66rem; text-decoration:none;
+    padding:6px 13px; border:1px solid var(--blue); border-radius:20px; color:var(--blue-deep);
+    transition:background .2s, color .2s, border-color .2s; white-space:nowrap;
+  }
+  .case-links a:hover, .case-links a:focus-visible{background:var(--blue-deep); border-color:var(--blue-deep); color:#fff; outline:none;}
+  #network .case-links a{border-color:var(--pink); color:var(--pink-deep);}
+  #network .case-links a:hover, #network .case-links a:focus-visible{background:var(--pink-deep); border-color:var(--pink-deep); color:#fff;}
+  .cosplay-card .case-links a{border-color:var(--pink); color:var(--pink-deep);}
+  .cosplay-card .case-links a:hover, .cosplay-card .case-links a:focus-visible{background:var(--pink-deep); border-color:var(--pink-deep); color:#fff;}
+  .cosplay-card .case-figures .fn{color:var(--pink-deep);}
+
+  /* platform badges — text-based (no third-party logo marks used) */
+  .platform-badges{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 4px;}
+  .platform-badges span{
+    font-family:'IBM Plex Mono',monospace; font-size:0.66rem; font-weight:600;
+    padding:6px 12px; border-radius:20px; letter-spacing:0.02em;
+    background:var(--paper-blue); color:var(--blue-deep); border:1px solid var(--blue);
+  }
+
+  /* photo strip inside case cards */
+  .case-photos{
+    display:flex; gap:6px;
+    margin:-30px -28px 18px; height:190px; overflow:hidden;
+    border-radius:4px 4px 0 0;
+  }
+  .case-photos img{flex:1 1 0; min-width:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block;}
+  .case-card.wide{grid-column:1 / -1;}
+  @media (max-width:640px){
+    .case-photos{height:130px;}
+  }
+  .poster-grid{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin:-30px -28px 18px; padding:16px 16px 0;
+    background:var(--paper-blue);
+  }
+  .poster-grid img{
+    width:96px; height:136px; object-fit:cover; border-radius:3px;
+    box-shadow:0 6px 14px -6px rgba(76,60,110,0.35);
+  }
+  @media (max-width:640px){
+    .poster-grid img{width:78px; height:110px;}
+  }
+
+  /* photo-gallery — mixed portrait/landscape photos shown at natural aspect ratio, no cropping */
+  .photo-gallery{
+    display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start;
+    margin:-30px -28px 18px; padding:16px 16px 0;
+    background:var(--paper-blue);
+  }
+  .photo-gallery img{
+    height:180px; width:auto; max-width:100%; display:block; border-radius:3px;
+    box-shadow:0 6px 14px -6px rgba(76,60,110,0.35);
+  }
+  @media (max-width:640px){
+    .photo-gallery img{height:130px;}
+  }
+
+  /* ---------- Carousel: single-row auto-slide gallery with swipe + hover zoom ---------- */
+  .carousel{
+    position:relative; overflow:hidden; border-radius:4px 4px 0 0;
+    margin:-30px -28px 18px; background:#15131f;
+    touch-action:pan-y;
+  }
+  .carousel-track{
+    display:flex; transition:transform .5s cubic-bezier(.4,0,.2,1); cursor:grab;
+  }
+  .carousel-track:active{cursor:grabbing;}
+  .carousel-slide{
+    flex:0 0 100%; min-width:0; height:300px; overflow:hidden; position:relative;
+  }
+  .carousel-slide img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform .5s ease; user-select:none; -webkit-user-drag:none; pointer-events:none;
+  }
+  .carousel-slide:hover img{transform:scale(1.1);}
+  .carousel.posters .carousel-slide{height:380px; background:#15131f;}
+  .carousel.posters .carousel-slide img{object-fit:contain;}
+  .carousel.bottom{margin:16px -28px -26px; border-radius:0;}
+  .carousel-caption{
+    position:absolute; left:0; right:0; bottom:0;
+    background:linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+    color:#fff; padding:34px 18px 14px; pointer-events:none;
+    font-family:'Kanit',sans-serif; font-weight:600; font-size:0.95rem; line-height:1.3;
+  }
+  .carousel-caption span{
+    display:block; font-family:'IBM Plex Mono',monospace; font-weight:400; font-size:0.68rem;
+    color:#D9A9C8; margin-top:4px; letter-spacing:0.04em;
+  }
+  @media (max-width:640px){
+    .carousel-slide{height:220px;}
+    .carousel.posters .carousel-slide{height:300px;}
+  }
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    background:rgba(0,0,0,0.45); color:#fff; border:none;
+    width:32px; height:32px; border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:1.05rem;
+    z-index:5; opacity:0; transition:opacity .2s, background .2s;
+  }
+  .carousel-arrow:hover{background:rgba(0,0,0,0.75);}
+  .carousel:hover .carousel-arrow{opacity:1;}
+  .carousel-arrow.prev{left:10px;}
+  .carousel-arrow.next{right:10px;}
+  .carousel-dots{
+    position:absolute; bottom:10px; left:0; right:0;
+    display:flex; justify-content:center; gap:6px; z-index:5;
+  }
+  .carousel-dot{
+    width:6px; height:6px; border-radius:50%; padding:0; border:none;
+    background:rgba(255,255,255,0.5); cursor:pointer; transition:width .2s, background .2s;
+  }
+  .carousel-dot.active{background:#fff; width:18px; border-radius:3px;}
+
+  /* ---------- Cosplayer & Influencer campaign section (portrait photos shown in full) ---------- */
+  .cosplay-grid{
+    display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x proximity;
+    max-width:100%; margin-top:8px; padding-bottom:16px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin; scrollbar-color:var(--pink) transparent;
+  }
+  .cosplay-grid::-webkit-scrollbar{height:6px;}
+  .cosplay-grid::-webkit-scrollbar-track{background:transparent;}
+  .cosplay-grid::-webkit-scrollbar-thumb{background:var(--pink); border-radius:3px;}
+  .cosplay-card{
+    background:#FFFFFF; border-radius:4px; overflow:hidden;
+    box-shadow:0 20px 45px -26px rgba(76,60,110,0.35);
+    border-top:5px solid var(--pink);
+    display:flex; flex-direction:column;
+    flex:0 0 auto; width:280px; scroll-snap-align:start;
+  }
+  .cosplay-card img{
+    width:100%; height:auto; display:block; /* natural aspect ratio — no cropping */
+  }
+  .cosplay-card .body{padding:22px 24px 24px;}
+  .cosplay-card .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.07em; text-transform:uppercase;
+    color:var(--pink-deep); font-weight:600; margin-bottom:10px; display:block;
+  }
+  .cosplay-card h3{font-family:'Kanit',sans-serif; font-weight:600; font-size:1.2rem; margin-bottom:6px; line-height:1.25; color:var(--ink);}
+  .cosplay-card .meta{font-size:0.78rem; color:var(--muted-on-paper); margin-bottom:12px; font-weight:500;}
+  .cosplay-card p{font-size:0.9rem; color:#4A4568; margin-bottom:14px;}
+  .cosplay-card .case-figures{border-top:1px dashed #E6DEF0; padding-top:12px; margin-bottom:4px;}
+  .cosplay-card .case-links{margin-top:14px;}
+
+  /* recurring badge */
+  .recur-badge{
+    position:absolute; top:-12px; right:20px;
+    background:var(--pink-deep); color:#FFFDFE; font-family:'Kanit',sans-serif; font-weight:700;
+    font-size:0.68rem; padding:6px 12px; letter-spacing:0.04em; border-radius:3px;
+    box-shadow:0 8px 16px -6px rgba(221,92,153,0.5);
+  }
+
+  /* ---------- Timeline (chapter 3) ---------- */
+  .timeline{max-width:820px; position:relative; padding-left:34px;}
+  .timeline::before{content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line);}
+  .tl-item{position:relative; padding-bottom:38px;}
+  .tl-item::before{
+    content:""; position:absolute; left:-34px; top:4px; width:13px; height:13px; border-radius:50%;
+    background:#FFFFFF; border:3px solid var(--pink-deep);
+  }
+  .tl-item:nth-child(even)::before{ border-color:var(--blue-deep); }
+  .tl-year{font-family:'IBM Plex Mono',monospace; color:var(--pink-deep); font-size:0.78rem; margin-bottom:4px; letter-spacing:0.05em;}
+  .tl-item:nth-child(even) .tl-year{ color:var(--blue-deep); }
+  .tl-title{font-family:'Kanit',sans-serif; font-weight:600; font-size:1.08rem; color:var(--ink); margin-bottom:4px;}
+  .tl-desc{color:var(--ink-soft); font-size:0.88rem; max-width:600px;}
+
+  /* ---------- Footer / contact ---------- */
+  #contact{
+    background:linear-gradient(180deg, var(--paper-pink) 0%, var(--paper-blue) 100%);
+    align-items:center; text-align:center;
+  }
+  #contact .obi{margin:0 auto 40px; justify-content:center;}
+  .contact-links{
+    display:flex; gap:28px; flex-wrap:wrap; justify-content:center; margin-top:10px;
+  }
+  .contact-links a{
+    font-family:'Kanit',sans-serif; font-weight:500; font-size:0.95rem;
+    padding:12px 22px; border:1px solid #D8CDEB; border-radius:3px; background:#FFFFFF;
+    transition:border-color .2s, color .2s;
+  }
+  .contact-links a:hover, .contact-links a:focus-visible{border-color:var(--pink-deep); color:var(--pink-deep); outline:none;}
+  .skills-row{
+    margin-top:70px; max-width:760px; display:flex; flex-direction:column; gap:16px; text-align:left;
+  }
+  .skills-row .row{display:flex; gap:16px; font-size:0.85rem;}
+  .skills-row .k{font-family:'IBM Plex Mono',monospace; color:var(--blue-deep); min-width:110px; text-transform:uppercase; font-size:0.68rem; padding-top:3px;}
+  .skills-row .v{color:var(--ink-soft); flex:1;}
+  footer.note{
+    margin-top:60px; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:#A79FC0;
+    max-width:520px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="sidenav" aria-label="Section navigation">
+  <a href="#hero" data-label="Hero" class="active"></a>
+  <a href="#corporate" data-label="Kadokawa Amarin"></a>
+  <a href="#cosplay" data-label="Cosplayer Campaigns"></a>
+  <a href="#network" data-label="Ani Network"></a>
+  <a href="#timeline" data-label="Timeline"></a>
+  <a href="#contact" data-label="Contact"></a>
+</nav>
+
+<!-- 1 : HERO -->
+<section id="hero">
+  <div class="hero-photo"><img src="assets/tittamon-portrait.jpg" alt="Portrait of Tittamon Nantawan at Anime Festival Asia Thailand 2026" loading="eager" fetchpriority="high"></div>
+  <div class="hero-kicker mono">PORTFOLIO — DRAFT V1</div>
+  <div class="hero-name-th">ธฤตมน นันทวรรณ</div>
+  <div class="hero-name-en">Tittamon Nantawan</div>
+  <p class="hero-role">Digital Marketing Supervisor operating at <strong>manager level</strong> — performance marketing, budget ownership, and content strategy for one of Thailand's leading ACG publishers, alongside an independent influencer &amp; PR agency.</p>
+
+  <div class="obi reveal">
+    <div class="obi-stat"><span class="obi-num">122%</span><span class="obi-label">Social ROAS YoY</span></div>
+    <div class="obi-stat"><span class="obi-num">1.17M฿</span><span class="obi-label">AFA 2026 Media Value</span></div>
+    <div class="obi-stat"><span class="obi-num">15.0</span><span class="obi-label">Peak Campaign ROAS</span></div>
+    <div class="obi-stat"><span class="obi-num">100K+</span><span class="obi-label">Kiss Ani Followers</span></div>
+  </div>
+
+  <div class="scroll-cue"><div class="line"></div>SCROLL</div>
+</section>
+
+<!-- 2 : CORPORATE -->
+<section id="corporate">
+  <div class="eyebrow"><span class="kanji">第一章</span> Chapter One — Corporate</div>
+  <h2 class="section-title reveal">Kadokawa Amarin Co., Ltd.</h2>
+  <p class="section-lede reveal">Thai subsidiary of KADOKAWA. Own online advertising budgets across 6 business lines, lead a team of 5, and report directly to Director-level management.</p>
+
+  <div class="stat-grid reveal">
+    <div class="stat-cell"><div class="n">6</div><div class="l">Business Lines</div></div>
+    <div class="stat-cell"><div class="n">5</div><div class="l">Team Led</div></div>
+    <div class="stat-cell"><div class="n">+55%</div><div class="l">Organic Traffic</div></div>
+    <div class="stat-cell"><div class="n">+43.5%</div><div class="l">Google ROAS YoY</div></div>
+  </div>
+
+  <div class="case-grid">
+    <div class="case-card reveal">
+      <span class="tag">Phoenix Next · Performance Marketing</span>
+      <h3>Full-Funnel KOL &amp; Paid Media</h3>
+      <div class="meta">2024 (Jan–Oct/Nov) · YoY Growth</div>
+      <p>Scaled both the affiliate/KOL and paid-media engines in the same year — awareness-to-conversion KOL strategy plus a multi-channel paid program.</p>
+      <div class="platform-badges">
+        <span>Meta Ads</span>
+        <span>Google Ads</span>
+        <span>YouTube Ads</span>
+        <span>TikTok Ads</span>
+        <span>X Ads</span>
+      </div>
+      <div class="case-figures">
+        <div><span class="fn">5.56</span><span class="fl">KOL ROAS (+229% YoY)</span></div>
+        <div><span class="fn">+82%</span><span class="fl">Paid Ads Growth YoY</span></div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <span class="tag">Phoenix Next · Influencer Marketing</span>
+      <h3>KOL Affiliate Program</h3>
+      <div class="meta">2025 – 2026 · phoenixnext.com</div>
+      <p>Performance-based affiliate model — unique KOL codes tracked to individual sales, fully attributable revenue.</p>
+      <div class="case-figures">
+        <div><span class="fn">3,162</span><span class="fl">2025 Orders</span></div>
+        <div><span class="fn">~8.8</span><span class="fl">True ROAS</span></div>
+      </div>
+    </div>
+
+    <div class="case-card wide reveal">
+      <div class="carousel" data-autoplay="4200">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="assets/bookfair-stage-alya-1.jpg" alt="Crowd gathered for the Alya stage panel at the National Book Fair" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/bookfair-stage-alya-2.jpg" alt="Voice actors on stage for the Alya light novel panel" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/bookfair-stage-doraemon-1.jpg" alt="Doraemon voice cast group photo at the Phoenix Next booth" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/bookfair-stage-doraemon-group2025.jpg" alt="Doraemon voice cast on stage for the Melody of Books event" draggable="false" loading="lazy"></div>
+      </div>
+      <button class="carousel-arrow prev" aria-label="Previous slide">‹</button>
+      <button class="carousel-arrow next" aria-label="Next slide">›</button>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" aria-label="Go to slide 1"></button>
+        <button class="carousel-dot" aria-label="Go to slide 2"></button>
+        <button class="carousel-dot" aria-label="Go to slide 3"></button>
+        <button class="carousel-dot" aria-label="Go to slide 4"></button>
+      </div>
+    </div>
+      <span class="recur-badge">Every Year Since 2023</span>
+      <span class="tag">Phoenix Next · Event Marketing</span>
+      <h3>Recurring Viral Content Program</h3>
+      <div class="meta">National Book Fair · QSNCC · 2023 – Present · Project Manager (stage, 2024–25)</div>
+      <p>Annual barter-based KOL campaign plus stage production — Thai voice actors promoting Ani-One &amp; Phoenix Next titles, packed 200+ audience each year. Cosplayer CMYK's Shaka (มหาศึกคนชนเทพ) activation went viral on TikTok.</p>
+      <div class="case-figures">
+        <div><span class="fn">~500K</span><span class="fl">Organic Views / Yr</span></div>
+        <div><span class="fn">20–50</span><span class="fl">KOLs / Round</span></div>
+      </div>
+      <div class="case-links">
+        <a href="https://www.facebook.com/CMYK.cosplay/posts/pfbid02M9HCu75CJSMreYGrbHJA5raGp5W9TUPVS7mYCS5yoniwbKZaXMJED6LetSaaBz9Jl" target="_blank" rel="noopener">📘 CMYK Campaign Post</a>
+        <a href="https://www.tiktok.com/@phoenix_next_official/video/7216653370604408090" target="_blank" rel="noopener">🎵 Viral TikTok Clip</a>
+      </div>
+    </div>
+
+    <div class="case-card wide reveal">
+      <div class="carousel" data-autoplay="4200">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="assets/doraemon2025-press-screening-cast.jpg" alt="Influencer voice cast at the Doraemon 2025 press screening" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/doraemon2025-press-screening-idols.jpg" alt="Idol group invited to the Doraemon 2025 press screening" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/doraemon-gala-mall-stage.jpg" alt="Doraemon movie gala event stage at a Bangkok mall" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/5cm-press-screening-cast.jpg" alt="Cast and guests at the 5 Centimeters per Second press screening" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/bokuyabai-press-screening-cast.jpg" alt="Cosplayers at the Boku no Kokoro no Yabai Yatsu press screening" draggable="false" loading="lazy"></div>
+      </div>
+      <button class="carousel-arrow prev" aria-label="Previous slide">‹</button>
+      <button class="carousel-arrow next" aria-label="Next slide">›</button>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" aria-label="Go to slide 1"></button>
+        <button class="carousel-dot" aria-label="Go to slide 2"></button>
+        <button class="carousel-dot" aria-label="Go to slide 3"></button>
+        <button class="carousel-dot" aria-label="Go to slide 4"></button>
+        <button class="carousel-dot" aria-label="Go to slide 5"></button>
+      </div>
+    </div>
+      <span class="tag">Phoenix Next · Film Marketing</span>
+      <h3>One Engine, Nine Premieres</h3>
+      <div class="meta">2024 – 2026 · Doraemon The Movie, 5 Centimeters per Second, Boku no Kokoro no Yabai Yatsu The Movie, and more</div>
+      <p>Full-cycle release marketing: paid media, cinema coordination, press screenings, launch-stage events, and influencer voice-dub casting &amp; production.</p>
+      <div class="case-figures">
+        <div><span class="fn">9</span><span class="fl">Films Led</span></div>
+        <div><span class="fn">~35M</span><span class="fl">Dub Cast Reach</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2.5 : COSPLAYER & INFLUENCER CAMPAIGNS -->
+<section id="cosplay">
+  <div class="eyebrow"><span class="kanji">選</span> Selected Work — Cosplayer Collaborations</div>
+  <h2 class="section-title reveal">Cosplayer &amp; Influencer Campaigns</h2>
+  <p class="section-lede reveal">Character-led product launches — pairing cosplayers and influencers with book, artbook, and light-novel releases across the Phoenix Next catalog.</p>
+
+  <div class="cosplay-grid">
+    <div class="cosplay-card reveal">
+      <img src="assets/genshin-goldenfish-cosplay.jpg" alt="Cosplayer Goldenfish Sister holding the Genshin Impact Artbook for the campaign" loading="lazy">
+      <div class="body">
+        <span class="tag">2023 · ROAS-Driven Influencer Campaign</span>
+        <h3>Genshin Impact Artbook</h3>
+        <div class="meta">with Goldenfish Sister (คอสเพลย์เยอร์)</div>
+        <p>Designed a cosplayer-driven launch campaign, pairing creator content with paid amplification to reach a highly engaged fan community.</p>
+        <div class="case-figures">
+          <div><span class="fn">15.0</span><span class="fl">Campaign ROAS</span></div>
+        </div>
+        <div class="case-links">
+          <a href="https://www.facebook.com/GoldenfishSister/posts/pfbid0NwU5ZfzMQ75QFuJcvvwSnCbQ1vzb5haH96suEchJsXs3L9asigP13TaxZ9SiU4ovl" target="_blank" rel="noopener">📘 Campaign Post</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cosplay-card reveal">
+      <img src="assets/houshou-marine-taotan-cosplay.jpg" alt="Cosplayer Taotan dressed as Houshou Marine holding the Fanbook" loading="lazy">
+      <div class="body">
+        <span class="tag">Phoenix Next · Fanbook Promotion</span>
+        <h3>Houshou Marine Fanbook &amp; Comic Anthology</h3>
+        <div class="meta">with Taotan (คอสเพลย์เยอร์)</div>
+        <p>Cosplayer-led promotion for the official hololive Houshou Marine fanbook release, driving fan community engagement around the launch.</p>
+        <div class="case-links">
+          <a href="https://www.facebook.com/taotan1412/posts/pfbid0fL9AstxUrbrjQ54X8suEWTLydBCsam23U4RUrX3JeHnwgUKun2VSxJH1gp5TyMtfl" target="_blank" rel="noopener">📘 Campaign Post</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cosplay-card reveal">
+      <img src="assets/alya-shoshang-cosplay.jpg" alt="Influencer Shoshang cosplaying for the Alya light novel campaign" loading="lazy">
+      <div class="body">
+        <span class="tag">Phoenix Next · Light Novel Promotion</span>
+        <h3>Alya Sometimes Hides Her Feelings in Russian</h3>
+        <div class="meta">คุณอาเรียโต๊ะข้างๆ พูดรัสเซียหวานใส่จนหัวใจจะวาย · with Shoshang</div>
+        <p>Partnered with cosplayer/influencer Shoshang to promote the light novel release through character-driven content.</p>
+        <div class="case-links">
+          <a href="https://www.tiktok.com/@shoshang/video/7423714806340832520" target="_blank" rel="noopener">🎵 Campaign Video</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 : ANI NETWORK -->
+<section id="network">
+  <div class="eyebrow"><span class="kanji">第二章</span> Chapter Two — Independent Practice</div>
+  <h2 class="section-title reveal">Kiss Ani &amp; Ani Network</h2>
+  <p class="section-lede reveal">A content page turned talent &amp; PR agency, built independently of the day job — 100,000+ followers, and a KOL roster spanning five VTuber agencies.</p>
+
+  <div class="case-grid">
+    <div class="case-card wide reveal">
+      <div class="carousel" data-autoplay="4200">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="assets/afa-combined-portraits.jpg" alt="AFA Thailand 2026 key visual with Tittamon alongside celebrity guests" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/afa-pressconf-crowd.jpg" alt="AFA Thailand 2026 press conference stage and audience" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/afa-pressconf-celebrity-solo.jpg" alt="Celebrity guest speaking to press at AFA Thailand 2026 media wall" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/afa-mainevent-crowd-booths.jpg" alt="Crowds browsing exhibitor booths at the AFA Thailand 2026 main event" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/afa-mainevent-entrance-queue.jpg" alt="Attendee queue at the AFA Thailand 2026 entrance" draggable="false" loading="lazy"></div>
+      </div>
+      <button class="carousel-arrow prev" aria-label="Previous slide">‹</button>
+      <button class="carousel-arrow next" aria-label="Next slide">›</button>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" aria-label="Go to slide 1"></button>
+        <button class="carousel-dot" aria-label="Go to slide 2"></button>
+        <button class="carousel-dot" aria-label="Go to slide 3"></button>
+        <button class="carousel-dot" aria-label="Go to slide 4"></button>
+        <button class="carousel-dot" aria-label="Go to slide 5"></button>
+      </div>
+    </div>
+      <span class="tag">Client · SOZO</span>
+      <h3>Anime Festival Asia Thailand 2026</h3>
+      <div class="meta">Influencer Marketing &amp; PR Lead, Thailand</div>
+      <p>Solo-led PR strategy with a support team of 2. Coordinated celebrity guests for the press conference and managed the media wall / press scrum.</p>
+      <div class="case-figures">
+        <div><span class="fn">200+</span><span class="fl">Media Invited</span></div>
+        <div><span class="fn">400+</span><span class="fl">Guests</span></div>
+        <div><span class="fn">1.17M฿</span><span class="fl">Media Value</span></div>
+      </div>
+      <div class="case-links">
+        <a href="https://www.youtube.com/watch?v=QFGiKBYnZTU" target="_blank" rel="noopener">▶ YouTube Coverage</a>
+        <a href="https://en.thairath.co.th/entertain/news/2931077" target="_blank" rel="noopener">📰 Thairath Article</a>
+        <a href="https://www.tiktok.com/@animatext_official/video/7640059386420907284" target="_blank" rel="noopener">🎵 KOL: animatext_official</a>
+        <a href="https://www.tiktok.com/@nateatheseries/video/7639818057673739541" target="_blank" rel="noopener">🎵 KOL: nateatheseries</a>
+      </div>
+    </div>
+
+    <div class="case-card wide reveal">
+      <div class="carousel" data-autoplay="4200">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="assets/mha-pop-store-merch.jpg" alt="Ani-One POP My Hero Academia POP-UP store merchandise display" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/mha-pop-fan-uraraka.jpg" alt="Fan posing with an Uraraka cutout at the My Hero Academia POP-UP" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/mha-pop-fan-deku.jpg" alt="Fan posing with a Deku cutout at the My Hero Academia POP-UP" draggable="false" loading="lazy"></div>
+      </div>
+      <button class="carousel-arrow prev" aria-label="Previous slide">‹</button>
+      <button class="carousel-arrow next" aria-label="Next slide">›</button>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" aria-label="Go to slide 1"></button>
+        <button class="carousel-dot" aria-label="Go to slide 2"></button>
+        <button class="carousel-dot" aria-label="Go to slide 3"></button>
+      </div>
+    </div>
+      <span class="tag">Client · Media Link</span>
+      <h3>Ani-One POP — My Hero Academia</h3>
+      <div class="meta">MBK Center · Jun 9–29, 2026</div>
+      <p>Managed media invitations, photo/video content production, promotional content creation, content planning, and paid ad execution.</p>
+      <div class="case-figures">
+        <div><span class="fn">18</span><span class="fl">Media Invited</span></div>
+        <div><span class="fn">14,262 THB</span><span class="fl">Media Value</span></div>
+      </div>
+    </div>
+
+    <div class="case-card wide reveal">
+      <div class="carousel" data-autoplay="4200">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="assets/haikyu-pop-crowd-shopping.jpg" alt="Shoppers browsing HAIKYU!! merchandise at the pop-up" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/haikyu-pop-display-standee.jpg" alt="Ani-One POP HAIKYU!! display standees at MBK Center" draggable="false" loading="lazy"></div>
+        <div class="carousel-slide"><img src="assets/haikyu-pop-fans-photo.jpg" alt="Fans taking photos at the HAIKYU!! photo point" draggable="false" loading="lazy"></div>
+      </div>
+      <button class="carousel-arrow prev" aria-label="Previous slide">‹</button>
+      <button class="carousel-arrow next" aria-label="Next slide">›</button>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" aria-label="Go to slide 1"></button>
+        <button class="carousel-dot" aria-label="Go to slide 2"></button>
+        <button class="carousel-dot" aria-label="Go to slide 3"></button>
+      </div>
+    </div>
+      <span class="tag">Client · Media Link</span>
+      <h3>Ani-One POP — HAIKYU!!</h3>
+      <div class="meta">MBK Center · Aug–Sep 2026</div>
+      <p>Owned the full marketing plan end-to-end — content, ads, KOL, PR. Outperformed the prior MHA activation with multiple sell-outs.</p>
+      <div class="case-figures">
+        <div><span class="fn">Sold Out</span><span class="fl">Multiple Items</span></div>
+      </div>
+      <div class="case-links">
+        <a href="https://www.facebook.com/AniOneThailand/posts/pfbid02z9odvYPVQe19UDCP2PBwXqYcx6a47naMkpPV237zEy73RFYuezKSbT8pXbHmeacHl" target="_blank" rel="noopener">📘 Facebook Post</a>
+        <a href="https://www.facebook.com/reel/1400405042195887" target="_blank" rel="noopener">🎬 Facebook Reel</a>
+        <a href="https://www.tiktok.com/@jinnie.hime/video/7672713562044894484" target="_blank" rel="noopener">🎵 KOL: jinnie.hime</a>
+        <a href="https://x.com/Kyokooong/status/2086798147473625520" target="_blank" rel="noopener">🐦 KOL: Kyokooong</a>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <span class="tag">Client · Blessing Studio</span>
+      <h3>Blessing Story Launch</h3>
+      <div class="meta">December 2025</div>
+      <p>Deployed the Ani Network KOL roster to promote the animation — content went viral organically.</p>
+      <div class="case-figures">
+        <div><span class="fn">Viral</span><span class="fl">Organic Reach</span></div>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <span class="tag">Since 2018 · 100,000+ Followers</span>
+      <h3>Kiss Ani Content Page</h3>
+      <div class="meta">VTuber · ACG · Film</div>
+      <p>Talent relationships across Algorhythm Project, Pixela Project, Polygon Project, Virtual Zeven, Euphora Project &amp; independent VTubers.</p>
+      <div class="case-figures">
+        <div><span class="fn">5+</span><span class="fl">Agency Partners</span></div>
+      </div>
+      <div class="case-links">
+        <a href="https://www.facebook.com/kissaniki" target="_blank" rel="noopener">📘 Facebook</a>
+        <a href="https://x.com/kissaniki" target="_blank" rel="noopener">🐦 X (Twitter)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 : TIMELINE -->
+<section id="timeline">
+  <div class="eyebrow"><span class="kanji">第三章</span> Chapter Three — Timeline</div>
+  <h2 class="section-title reveal">Selected Path, 2018 → 2026</h2>
+  <p class="section-lede reveal">A condensed view of how the corporate and independent tracks have run in parallel.</p>
+
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-year">2018</div>
+      <div class="tl-title">Kiss Ani founded</div>
+      <div class="tl-desc">Started as a personal content page for VTuber, ACG, and film content.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2020</div>
+      <div class="tl-title">Ani Network founded</div>
+      <div class="tl-desc">Extended Kiss Ani's creator relationships into a formal talent &amp; PR agency.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2022</div>
+      <div class="tl-title">Joined Kadokawa Amarin</div>
+      <div class="tl-desc">Digital Marketing Supervisor — media buying, SEO, influencer coordination.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2023</div>
+      <div class="tl-title">Genshin Artbook (ROAS 15) &amp; first Book Fair activation</div>
+      <div class="tl-desc">Standout campaign year — cosplayer/streamer partnerships and a viral, barter-based Book Fair debut.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2024</div>
+      <div class="tl-title">Phoenix Next scale-up &amp; Book Fair stage debut</div>
+      <div class="tl-desc">Full-funnel KOL and paid programs mature; first year as Project Manager for the Book Fair stage.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2025</div>
+      <div class="tl-title">Affiliate model launch, content strategy ownership begins</div>
+      <div class="tl-desc">Phoenix Next affiliate program launches (true ROAS ~8.8); took ownership of book-business content strategy; Blessing Story campaign.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-year">2026</div>
+      <div class="tl-title">AFA Thailand, Ani-One POP x2, AEO rollout</div>
+      <div class="tl-desc">Led PR for a national-scale event, ran two MBK activations, and began AEO alongside SEO.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 : CONTACT -->
+<section id="contact">
+  <div class="eyebrow" style="justify-content:center;"><span class="kanji">終</span> Get in Touch</div>
+  <h2 class="section-title reveal" style="max-width:none;">Let's build the next chapter.</h2>
+
+  <div class="obi reveal">
+    <div class="obi-stat"><span class="obi-num">4+ Yrs</span><span class="obi-label">Digital Marketing</span></div>
+    <div class="obi-stat"><span class="obi-num">Manager</span><span class="obi-label">Level Scope</span></div>
+    <div class="obi-stat"><span class="obi-num">2 Tracks</span><span class="obi-label">Corporate + Agency</span></div>
+  </div>
+
+  <div class="contact-links">
+    <a href="mailto:tittamon.nan@gmail.com">tittamon.nan@gmail.com</a>
+    <a href="tel:+66950076116">+66 95 007 6116</a>
+    <a href="#hero">Phrae, Thailand</a>
+  </div>
+
+  <div class="skills-row">
+    <div class="row"><div class="k">Marketing</div><div class="v">Budget Planning, Performance Strategy, Media Buying (Meta/Google/TikTok), SEO/AEO, Influencer &amp; Affiliate Management, PR &amp; Media Relations</div></div>
+    <div class="row"><div class="k">Data</div><div class="v">Looker Studio, Google Analytics, Power BI, Excel/Sheets, Python</div></div>
+    <div class="row"><div class="k">Languages</div><div class="v">Thai (Native), English (TOEIC 860), Japanese (JLPT N4)</div></div>
+    <div class="row"><div class="k">Education</div><div class="v">B.Eng Industrial Engineering, Chulalongkorn University (2016–2020)</div></div>
+  </div>
+
+  <footer class="note">This is a rough draft (v1) — layout and sections to be refined once campaign photography is added. All figures shown are extracted metrics; no internal dashboard imagery is reproduced.</footer>
+</section>
+
+<script>
+  const links = document.querySelectorAll('.sidenav a');
+  const sections = document.querySelectorAll('section[id]');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const active = document.querySelector('.sidenav a[href="#'+e.target.id+'"]');
+        if(active) active.classList.add('active');
+      }
+    });
+  }, {threshold:0.5});
+  sections.forEach(s=>io.observe(s));
+
+  // Scroll-reveal: fade + rise elements into view as they enter viewport
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.01, rootMargin:'0px 0px 0px 0px'});
+  revealEls.forEach(el=>revealObserver.observe(el));
+
+  // Safety net: catches any element the observer might miss on fast/jump scrolls
+  function revealFallbackScan(){
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){
+        el.classList.add('visible');
+        revealObserver.unobserve(el);
+      }
+    });
+  }
+  let scanTimer = null;
+  window.addEventListener('scroll', ()=>{
+    clearTimeout(scanTimer);
+    scanTimer = setTimeout(revealFallbackScan, 250);
+  }, {passive:true});
+  window.addEventListener('load', revealFallbackScan);
+
+  // ---------- Carousel: autoplay, swipe/drag, arrows, dots, hover-pause ----------
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  class Carousel{
+    constructor(el){
+      this.el = el;
+      this.track = el.querySelector('.carousel-track');
+      this.slides = Array.from(el.querySelectorAll('.carousel-slide'));
+      this.dots = Array.from(el.querySelectorAll('.carousel-dot'));
+      this.index = 0;
+      this.autoplayMs = parseInt(el.dataset.autoplay || '0', 10);
+      this.timer = null;
+      this.dragging = false;
+      this.startX = 0;
+      this.deltaX = 0;
+      if(this.slides.length <= 1) return; // nothing to slide
+      this.bind();
+      this.goTo(0, false);
+      if(!reducedMotion && this.autoplayMs > 0) this.start();
+    }
+    goTo(i, animate){
+      this.index = (i + this.slides.length) % this.slides.length;
+      this.track.style.transition = animate === false ? 'none' : '';
+      this.track.style.transform = `translateX(-${this.index * 100}%)`;
+      this.dots.forEach((d, idx) => d.classList.toggle('active', idx === this.index));
+    }
+    next(){ this.goTo(this.index + 1); }
+    prev(){ this.goTo(this.index - 1); }
+    start(){ this.stop(); this.timer = setInterval(() => this.next(), this.autoplayMs); }
+    stop(){ if(this.timer){ clearInterval(this.timer); this.timer = null; } }
+    restart(){ if(!reducedMotion && this.autoplayMs > 0) this.start(); }
+    bind(){
+      const prevBtn = this.el.querySelector('.carousel-arrow.prev');
+      const nextBtn = this.el.querySelector('.carousel-arrow.next');
+      if(prevBtn) prevBtn.addEventListener('click', () => { this.prev(); this.restart(); });
+      if(nextBtn) nextBtn.addEventListener('click', () => { this.next(); this.restart(); });
+      this.dots.forEach((d, idx) => d.addEventListener('click', () => { this.goTo(idx); this.restart(); }));
+      this.el.addEventListener('mouseenter', () => this.stop());
+      this.el.addEventListener('mouseleave', () => this.restart());
+
+      const onDown = (x) => {
+        this.dragging = true; this.startX = x; this.deltaX = 0;
+        this.stop(); this.track.style.transition = 'none';
+      };
+      const onMove = (x) => {
+        if(!this.dragging) return;
+        this.deltaX = x - this.startX;
+        const pct = -(this.index * 100) + (this.deltaX / this.el.clientWidth * 100);
+        this.track.style.transform = `translateX(${pct}%)`;
+      };
+      const onUp = () => {
+        if(!this.dragging) return;
+        this.dragging = false;
+        this.track.style.transition = '';
+        if(Math.abs(this.deltaX) > this.el.clientWidth * 0.15){
+          this.deltaX < 0 ? this.next() : this.prev();
+        } else {
+          this.goTo(this.index);
+        }
+        this.deltaX = 0;
+        this.restart();
+      };
+      this.el.addEventListener('pointerdown', e => onDown(e.clientX));
+      this.el.addEventListener('pointermove', e => onMove(e.clientX));
+      this.el.addEventListener('pointerup', onUp);
+      this.el.addEventListener('pointerleave', onUp);
+      this.el.addEventListener('pointercancel', onUp);
+    }
+  }
+  document.querySelectorAll('.carousel').forEach(el => new Carousel(el));
+</script>
+
+</body>
+</html>
