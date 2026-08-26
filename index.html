@@ -298,8 +298,11 @@
   .carousel-slide:hover img{transform:scale(1.1);}
   .carousel.posters .carousel-slide{height:380px; background:#15131f;}
   .carousel.posters .carousel-slide img{object-fit:contain;}
-  @media (min-width:820px){
-    .case-card.wide .carousel-slide{height:380px;}
+  .case-card.wide .carousel{max-width:520px; margin:0 auto 18px; border-radius:8px;}
+  .case-card.wide .carousel-slide{height:340px;}
+  @media (max-width:560px){
+    .case-card.wide .carousel{max-width:none; margin:-30px -28px 18px; border-radius:4px 4px 0 0;}
+    .case-card.wide .carousel-slide{height:220px;}
   }
   .carousel.bottom{margin:16px -28px -26px; border-radius:0;}
   .carousel-caption{
