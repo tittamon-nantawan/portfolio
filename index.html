@@ -453,9 +453,9 @@
 
 <nav class="topnav" aria-label="Primary navigation">
   <div class="topnav-inner">
-    <a href="#corporate" class="topnav-link">Chapter One — Corporate</a>
-    <a href="#cosplay" class="topnav-link">Selected Work — Influencer Collaborations</a>
-    <a href="#network" class="topnav-link">Chapter Two — Independent Practice</a>
+    <a href="#corporate" class="topnav-link">Corporate</a>
+    <a href="#cosplay" class="topnav-link">Selected Work</a>
+    <a href="#network" class="topnav-link">Independent Practice</a>
     <a href="#contact" class="topnav-link">Get in Touch</a>
   </div>
 </nav>
@@ -857,7 +857,7 @@
         if(activeTop) activeTop.classList.add('active');
       }
     });
-  }, {threshold:0.5});
+  }, {threshold:0, rootMargin:'-110px 0px -65% 0px'});
   sections.forEach(s=>io.observe(s));
 
   // Scroll-reveal: fade + rise elements into view as they enter viewport
