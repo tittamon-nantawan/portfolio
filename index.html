@@ -247,7 +247,10 @@
     border-radius:4px 4px 0 0;
   }
   .case-photos img{flex:1 1 0; min-width:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block;}
-  .case-card.wide{grid-column:1 / -1;}
+  .case-card.wide{grid-column:1 / -1; max-width:580px; margin-left:auto; margin-right:auto;}
+  @media (max-width:560px){
+    .case-card.wide{max-width:none;}
+  }
   @media (max-width:640px){
     .case-photos{height:130px;}
   }
