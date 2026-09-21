@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Tittamon Nantawan — Portfolio</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%238FC6F2%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F7B3D8%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2232%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2241%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2226%22%20font-weight%3D%22700%22%20fill%3D%22%23332F4B%22%20text-anchor%3D%22middle%22%3ETN%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -162,9 +163,14 @@
   .origin-figs{ display:flex; gap:26px; margin-top:20px; flex-wrap:wrap; border-top:1px dashed var(--line); padding-top:16px;}
   .origin-figs .fn{ font-family:'Fraunces',serif; font-size:1.3rem; color:var(--pink-deep); font-weight:600;}
   .origin-figs .fl{ font-size:0.62rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); margin-top:3px;}
-  .origin-links{ margin-top:16px; display:flex; flex-wrap:wrap; gap:14px;}
-  .origin-links a{ font-size:0.76rem; text-decoration:none; border-bottom:1px solid var(--pink-deep); padding-bottom:2px; color:var(--ink); opacity:0.8;}
-  .origin-links a:hover{ opacity:1; color:var(--pink-deep);}
+  .origin-links{ margin-top:16px; display:flex; flex-wrap:wrap; gap:10px;}
+  .origin-links a{
+    font-size:0.72rem; text-decoration:none; color:var(--ink); opacity:0.85;
+    border:1px solid var(--line-strong); border-radius:999px; padding:7px 14px 6px;
+    display:inline-flex; align-items:center; gap:6px; transition:background .2s, border-color .2s, color .2s, opacity .2s;
+  }
+  .origin-links a::after{ content:"↗"; font-size:0.68rem; opacity:0.6;}
+  .origin-links a:hover{ opacity:1; color:#fff; background:var(--pink-deep); border-color:var(--pink-deep);}
 
   /* ---------- Work cards (alternating image/copy) ---------- */
   .work-card{
@@ -195,9 +201,34 @@
   .work-stats{ display:flex; gap:28px; margin-top:22px; flex-wrap:wrap; }
   .work-stats .num{ font-family:'Fraunces', serif; font-size:1.6rem; color:var(--pink-deep); font-weight:600;}
   .work-stats .lbl{ font-size:0.62rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); margin-top:4px;}
-  .work-links{ margin-top:22px; display:flex; flex-wrap:wrap; gap:15px; }
-  .work-links a{ font-size:0.76rem; text-decoration:none; border-bottom:1px solid var(--pink-deep); padding-bottom:2px; color:var(--ink); opacity:0.8; }
-  .work-links a:hover{ opacity:1; color:var(--pink-deep); }
+  .work-links{ margin-top:22px; display:flex; flex-wrap:wrap; gap:10px; }
+  .work-links a{
+    font-size:0.74rem; text-decoration:none; color:var(--ink); opacity:0.85;
+    border:1px solid var(--line-strong); border-radius:999px; padding:8px 15px 7px;
+    display:inline-flex; align-items:center; gap:6px; transition:background .2s, border-color .2s, color .2s, opacity .2s;
+  }
+  .work-links a::after{ content:"↗"; font-size:0.68rem; opacity:0.6;}
+  .work-links a:hover{ opacity:1; color:#fff; background:var(--pink-deep); border-color:var(--pink-deep);}
+
+  .see-more-btn{
+    margin-top:22px; background:none; border:1px solid var(--line-strong); border-radius:999px;
+    padding:9px 16px; font-family:'Inter',sans-serif; font-size:0.76rem; font-weight:600;
+    color:var(--blue-deep); cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+    transition:background .2s, color .2s, border-color .2s;
+  }
+  .see-more-btn:hover{ background:var(--blue); color:var(--ink); border-color:var(--blue);}
+  .see-more-btn span{ transition:transform .25s; display:inline-block; font-size:0.7rem;}
+  .see-more-btn[aria-expanded="true"] span{ transform:rotate(180deg);}
+  .film-list{
+    list-style:none; margin-top:16px; max-width:480px;
+    border-top:1px dashed var(--line);
+  }
+  .film-list li{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:11px 0; border-bottom:1px dashed var(--line); font-size:0.86rem;
+  }
+  .film-list .ft{ color:var(--ink-soft); }
+  .film-list .fd{ color:var(--muted); font-size:0.76rem; white-space:nowrap; flex:0 0 auto;}
 
   /* ---------- Cosplay/influencer card grid ---------- */
   .cos-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:26px; margin-top:8px;}
@@ -392,6 +423,18 @@
         <div><div class="num">9</div><div class="lbl">Films Led</div></div>
         <div><div class="num">~35M</div><div class="lbl">Dub Cast Reach</div></div>
       </div>
+      <button class="see-more-btn" data-see-more aria-expanded="false">See all 9 films <span>▾</span></button>
+      <ul class="film-list" data-film-list hidden>
+        <li><span class="ft">Henna Ie – The Floor Plan</span><span class="fd">Aug 2024</span></li>
+        <li><span class="ft">Doll House</span><span class="fd">Sep 2025</span></li>
+        <li><span class="ft">Doraemon: Nobita's Art World Tales</span><span class="fd">Oct 2025</span></li>
+        <li><span class="ft">Love Song</span><span class="fd">Nov 2025</span></li>
+        <li><span class="ft">5 Centimeters per Second (Live-Action)</span><span class="fd">Jan 2026</span></li>
+        <li><span class="ft">5 Centimeters per Second (Anime Series)</span><span class="fd">Feb 2026</span></li>
+        <li><span class="ft">Boku no Kokoro no Yabai Yatsu The Movie</span><span class="fd">Jul 2026</span></li>
+        <li><span class="ft">Doraemon: Nobita's Undersea Castle Adventure</span><span class="fd">Aug 2026</span></li>
+        <li><span class="ft">My Love Story with Yamada-kun at Lv999</span><span class="fd">Sep 2026</span></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -704,6 +747,22 @@
     scanTimer = setTimeout(revealFallbackScan, 250);
   }, {passive:true});
   window.addEventListener('load', revealFallbackScan);
+
+  // See-more film list toggle
+  document.querySelectorAll('[data-see-more]').forEach(function(btn){
+    var list = btn.nextElementSibling;
+    btn.addEventListener('click', function(){
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (expanded){
+        list.hidden = true;
+        btn.innerHTML = 'See all 9 films <span>▾</span>';
+      } else {
+        list.hidden = false;
+        btn.innerHTML = 'Hide film list <span>▾</span>';
+      }
+    });
+  });
 
   // Nav + sidenav active-state sync
   var topLinks = document.querySelectorAll('.topnav-link');
