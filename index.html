@@ -122,6 +122,13 @@
   .stat{ min-width:100px; }
   .stat .num{ font-family:'Fraunces', serif; font-size:1.9rem; color:var(--blue-deep); font-weight:600; line-height:1;}
   .stat .lbl{ font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:6px;}
+  .stat-toggle{
+    background:none; border:none; padding:0; margin:0; cursor:pointer; text-align:left;
+    font-family:inherit; display:block;
+  }
+  .stat-caret{ display:inline-block; font-size:1rem; margin-left:4px; color:var(--muted); transition:transform .25s; vertical-align:middle;}
+  .stat-toggle.is-open .stat-caret{ transform:rotate(180deg); color:var(--pink-deep); }
+  .stat-toggle:hover .num{ color:var(--pink-deep); }
 
   .scroll-cue{
     display:flex; align-items:center; gap:10px; font-size:0.66rem; letter-spacing:0.14em;
@@ -240,6 +247,8 @@
   }
   .film-list .ft{ color:var(--ink-soft); }
   .film-list .fd{ color:var(--muted); font-size:0.76rem; white-space:nowrap; flex:0 0 auto;}
+  .film-list .fd a{ color:var(--blue-deep); text-decoration:none; font-weight:600; }
+  .film-list .fd a:hover{ color:var(--pink-deep); text-decoration:underline; }
 
   /* ---------- Cosplay/influencer card grid ---------- */
   .cos-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:26px; margin-top:8px;}
@@ -362,13 +371,22 @@
     <p class="section-sub reveal">Thai subsidiary of KADOKAWA. Own online advertising budgets across 6 business lines, lead a team of 5, and report directly to Director-level management.</p>
   </div>
 
-  <div class="stat-row reveal" style="margin-bottom:52px;">
-    <div class="stat"><div class="num">6</div><div class="lbl">Business Lines</div></div>
+  <div class="stat-row reveal">
+    <button class="stat stat-toggle" data-see-more data-target="#business-lines-list" aria-expanded="false">
+      <div class="num">6<span class="stat-caret">▾</span></div><div class="lbl">Business Lines</div>
+    </button>
     <div class="stat"><div class="num">5</div><div class="lbl">Team Led</div></div>
     <div class="stat"><div class="num">+55%</div><div class="lbl">Organic Traffic</div></div>
-    <div class="stat"><div class="num">+43.5%</div><div class="lbl">Google ROAS YoY</div></div>
-    <div class="stat"><div class="num">+122.3%</div><div class="lbl">Social Ads ROAS YoY</div></div>
+    <div class="stat"><div class="num">+83%</div><div class="lbl">Blended ROAS Growth YoY</div></div>
   </div>
+  <ul class="film-list" data-film-list id="business-lines-list" hidden style="margin-bottom:36px;">
+    <li><span class="ft">Ecommerce</span><span class="fd"><a href="https://www.phoenixnext.com/" target="_blank" rel="noopener">Website ↗</a></span></li>
+    <li><span class="ft">Movie Campaigns</span><span class="fd"><a href="https://www.facebook.com/phoenixnextmovie" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+    <li><span class="ft">Book Fairs &amp; Offline Events</span><span class="fd"><a href="https://www.facebook.com/Phoenixnext/posts/pfbid0csJzhk56TGWBSVo96FbuZhgFEtQNryLE2aCXMtfnGK97AzS1L8orE1NQuSDjVdP4l" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+    <li><span class="ft">Merchandise &amp; Sign Events</span><span class="fd"><a href="https://www.facebook.com/profile.php?id=61576625138800" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+    <li><span class="ft">Retail Store</span><span class="fd"><a href="https://www.facebook.com/profile.php?id=61582955608880" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+    <li><span class="ft">Ani-One POP-up Store</span><span class="fd"><a href="https://www.facebook.com/AniOneThailand/posts/pfbid0v5pV7yFcNgJZHhKYcMmbV4U2wfZMWkr6nJ6wriiipPBC42r2kowWKZUkGCA6j15Vl" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+  </ul>
 
   <div class="origin-grid reveal">
     <div class="origin-card tint-blue">
@@ -398,6 +416,11 @@
         <div><div class="fn">3,162</div><div class="fl">2025 Orders</div></div>
         <div><div class="fn">~8.8</div><div class="fl">True ROAS</div></div>
       </div>
+      <div class="origin-links">
+        <a href="https://www.facebook.com/JulietPersia.TH/posts/pfbid0jQbdBcGNgQmyuYdAvYaunhiPsRC8TCfgWxpJSRsX5FQLqsMRCiHvFg3kJmN5cbMEl" target="_blank" rel="noopener">PERSIA</a>
+        <a href="https://www.facebook.com/NoAnimeNoLifeTH/posts/pfbid02xG4ijoBpJF6SizjPUaS4a81Up3JrX7uSEM5AfHpjzkTEnH2XnVc1K9cuZnk2avGjl" target="_blank" rel="noopener">No Anime No Life</a>
+        <a href="https://www.facebook.com/animehousehusbandth/posts/pfbid02r5rcaHJ95w7xAqsauFVa2sckdyydU2SLLTkKcmA8u8oFkDqRdM36WNM7y7FYtrqQl" target="_blank" rel="noopener">พ่อบ้านอนิเมะ</a>
+      </div>
     </div>
   </div>
 
@@ -415,9 +438,9 @@
     </div>
     <div>
       <div class="work-client">Phoenix Next · Event Marketing</div>
-      <div class="work-title">Recurring Viral Content Program</div>
+      <div class="work-title">Built to Go Viral, Every Year</div>
       <div class="work-meta">National Book Fair · QSNCC · 2023 – Present · Project Manager (stage, 2024–25)</div>
-      <p class="work-desc">Annual barter-based KOL campaign plus stage production — Thai voice actors promoting Ani-One &amp; Phoenix Next titles, packed 200+ audience each year. Cosplayer CMYK's Shaka (มหาศึกคนชนเทพ) activation went viral on TikTok.</p>
+      <p class="work-desc">Annual barter-based KOL campaign plus stage production — Thai voice actors promoting Ani-One &amp; Phoenix Next titles, packed 200+ audience each year. Cosplayer CMYK's Shaka (Record of Ragnarok) activation went viral on TikTok.</p>
       <div class="work-stats">
         <div><div class="num">~500K</div><div class="lbl">Organic Views / Yr</div></div>
         <div><div class="num">20–50</div><div class="lbl">KOLs / Round</div></div>
@@ -488,7 +511,7 @@
       <div class="body">
         <div class="cos-tag">2023 · ROAS-Driven Campaign</div>
         <h3>Genshin Impact Artbook</h3>
-        <div class="meta">with Goldenfish Sister (คอสเพลย์เยอร์) · <span class="follow-chip">199K YouTube</span></div>
+        <div class="meta">with Goldenfish Sister · <span class="follow-chip">199K YouTube</span></div>
         <p>Designed a cosplayer-driven launch campaign, pairing creator content with paid amplification to reach a highly engaged fan community.</p>
         <div class="cos-figs">
           <div><div class="fn">15.0</div><div class="fl">Campaign ROAS</div></div>
@@ -504,7 +527,7 @@
       <div class="body">
         <div class="cos-tag">Phoenix Next · Fanbook Promotion</div>
         <h3>Houshou Marine Fanbook &amp; Comic Anthology</h3>
-        <div class="meta">with Taotan (คอสเพลย์เยอร์) · <span class="follow-chip">119K Instagram</span></div>
+        <div class="meta">with Taotan · <span class="follow-chip">119K Instagram</span></div>
         <p>Cosplayer-led promotion for the official hololive Houshou Marine fanbook release, driving fan community engagement around the launch.</p>
         <div class="origin-links">
           <a href="https://www.facebook.com/taotan1412/posts/pfbid0fL9AstxUrbrjQ54X8suEWTLydBCsam23U4RUrX3JeHnwgUKun2VSxJH1gp5TyMtfl" target="_blank" rel="noopener">Campaign Post</a>
@@ -517,7 +540,7 @@
       <div class="body">
         <div class="cos-tag">Phoenix Next · Light Novel Promotion</div>
         <h3>Alya Sometimes Hides Her Feelings in Russian</h3>
-        <div class="meta">คุณอาเรียโต๊ะข้างๆ พูดรัสเซียหวานใส่จนหัวใจจะวาย · with Shoshang · <span class="follow-chip">1.6M TikTok</span></div>
+        <div class="meta">with Shoshang · <span class="follow-chip">1.6M TikTok</span></div>
         <p>Partnered with cosplayer/influencer Shoshang to promote the light novel release through character-driven content.</p>
         <div class="origin-links">
           <a href="https://www.tiktok.com/@shoshang/video/7423714806340832520" target="_blank" rel="noopener">Campaign Video</a>
@@ -561,7 +584,7 @@
   <div class="section-head">
     <div class="eyebrow"><span class="kanji">第二章</span> Chapter Two — Independent Practice</div>
     <h2 class="section-title reveal">Kiss Ani &amp; Ani Network</h2>
-    <p class="section-sub reveal">A content page turned talent &amp; PR agency, built independently of the day job — 100,000+ followers, and a KOL roster spanning five VTuber agencies.</p>
+    <p class="section-sub reveal">A content page turned talent &amp; PR agency, built independently of the day job — 100,000+ followers, and a KOL roster spanning five VTuber agencies. Partnered with KOLs across the ACG, VTuber, and Movie industries, with a combined follower reach of over 2M.</p>
   </div>
 
   <!-- AFA -->
@@ -595,8 +618,23 @@
     </div>
   </div>
 
-  <!-- MHA -->
+  <!-- ONE OR EIGHT -->
   <div class="work-card reverse reveal">
+    <div class="carousel" data-carousel data-autoplay="4200">
+      <div class="carousel-track">
+        <img src="assets/one-or-eight-showcase-2026.jpg" alt="ONE OR EIGHT promotional photo for the Special Showcase 2026 in Asia" loading="lazy">
+      </div>
+    </div>
+    <div>
+      <div class="work-client">Client · SOZO (Singapore)</div>
+      <div class="work-title">ONE OR EIGHT — Special SHOWCASE 2026 in ASIA -V8-</div>
+      <div class="work-meta">Lido Hall 2, Lido Connect · Oct 25, 2026</div>
+      <p class="work-desc">Led PR and KOL promotion for the Thailand stop of ONE OR EIGHT's Asia showcase — a rising Japanese boy group bringing their rapidly growing global momentum to Thai fans, following the success of their first live tour across North and South America.</p>
+    </div>
+  </div>
+
+  <!-- MHA -->
+  <div class="work-card reveal">
     <div class="carousel" data-carousel data-autoplay="4200">
       <div class="carousel-track">
         <img src="assets/mha-pop-store-merch.jpg" alt="Ani-One POP My Hero Academia POP-UP store merchandise display">
@@ -614,11 +652,16 @@
         <div><div class="num">18</div><div class="lbl">Media Invited</div></div>
         <div><div class="num">14,262฿</div><div class="lbl">Media Value</div></div>
       </div>
+      <div class="work-links">
+        <a href="https://www.tiktok.com/@ploy.inanime/video/7649616728216898837" target="_blank" rel="noopener">KOL: ploy.inanime</a>
+        <a href="https://www.tiktok.com/@framedoo_me/video/7649577448446741780" target="_blank" rel="noopener">KOL: framedoo_me</a>
+        <a href="https://www.tiktok.com/@fayemakii/video/7649715175431343378" target="_blank" rel="noopener">KOL: fayemakii</a>
+      </div>
     </div>
   </div>
 
   <!-- HAIKYU -->
-  <div class="work-card reveal">
+  <div class="work-card reverse reveal">
     <div class="carousel" data-carousel data-autoplay="4200">
       <div class="carousel-track">
         <img src="assets/haikyu-pop-crowd-shopping.jpg" alt="Shoppers browsing HAIKYU!! merchandise at the pop-up">
@@ -862,16 +905,17 @@
 
   // See-more film list toggle
   document.querySelectorAll('[data-see-more]').forEach(function(btn){
-    var list = btn.nextElementSibling;
+    var targetSel = btn.getAttribute('data-target');
+    var list = targetSel ? document.querySelector(targetSel) : btn.nextElementSibling;
+    if(!list) return;
     btn.addEventListener('click', function(){
       var expanded = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!expanded));
-      if (expanded){
-        list.hidden = true;
-        btn.innerHTML = 'See all 15 films <span>▾</span>';
+      list.hidden = expanded;
+      if (btn.classList.contains('see-more-btn')){
+        btn.innerHTML = expanded ? 'See all 15 films <span>▾</span>' : 'Hide film list <span>▾</span>';
       } else {
-        list.hidden = false;
-        btn.innerHTML = 'Hide film list <span>▾</span>';
+        btn.classList.toggle('is-open', !expanded);
       }
     });
   });
