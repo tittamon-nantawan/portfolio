@@ -250,6 +250,14 @@
     display:flex; flex-direction:column;
   }
   .cos-card img{ width:100%; height:340px; object-fit:cover; }
+  .cos-video{ width:100%; height:340px; object-fit:cover; display:block; background:#15131f; }
+  .gif-slot{
+    width:100%; height:340px; display:flex; align-items:center; justify-content:center;
+    text-align:center; background:repeating-linear-gradient(45deg, var(--paper-blue), var(--paper-blue) 10px, var(--paper-pink) 10px, var(--paper-pink) 20px);
+    border-bottom:1px dashed var(--line-strong);
+    font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--muted); line-height:1.6;
+  }
   .cos-card .body{ padding:22px 22px 26px; display:flex; flex-direction:column; flex:1;}
   .cos-tag{ font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--pink-deep); font-weight:600; margin-bottom:8px;}
   .cos-card h3{ font-family:'Fraunces',serif; font-weight:600; font-size:1.08rem; margin-bottom:6px; line-height:1.3; color:var(--ink);}
@@ -300,6 +308,7 @@
     <li><a href="#corporate" class="topnav-link">Corporate</a></li>
     <li><a href="#cosplay" class="topnav-link">Selected Work</a></li>
     <li><a href="#network" class="topnav-link">Independent Practice</a></li>
+    <li><a href="#ai-systems" class="topnav-link">Building with AI</a></li>
     <li><a href="#timeline" class="topnav-link">Timeline</a></li>
     <li><a href="#contact" class="topnav-link">Contact</a></li>
   </ul>
@@ -310,6 +319,7 @@
   <a href="#corporate" data-label="Corporate"></a>
   <a href="#cosplay" data-label="Selected Work"></a>
   <a href="#network" data-label="Independent Practice"></a>
+  <a href="#ai-systems" data-label="Building with AI"></a>
   <a href="#timeline" data-label="Timeline"></a>
   <a href="#contact" data-label="Contact"></a>
 </nav>
@@ -387,18 +397,6 @@
       <div class="origin-figs">
         <div><div class="fn">3,162</div><div class="fl">2025 Orders</div></div>
         <div><div class="fn">~8.8</div><div class="fl">True ROAS</div></div>
-      </div>
-    </div>
-
-    <div class="origin-card tint-blue" style="grid-column:1 / -1;">
-      <div class="origin-tag">Internal Tools · AI-Applied Workflows</div>
-      <h3>Building with AI: Budget, Media &amp; Content Systems</h3>
-      <div class="meta">Ongoing</div>
-      <p>Applied AI tools to design and build internal systems that replaced manual spreadsheet workflows — a web dashboard for allocating and tracking advertising budgets across the 6 business lines, a media registration system for coordinating press/KOL invitations across film releases, and an automated content system that sources news from the web, writes and restyles articles, generates matching artwork, and outputs the finished piece formatted for either the website or social media.</p>
-      <div class="pill-row">
-        <span class="pill">Budget Allocation Dashboard</span>
-        <span class="pill">Film Media Registration System</span>
-        <span class="pill">Automated Content &amp; Artwork System</span>
       </div>
     </div>
   </div>
@@ -679,10 +677,53 @@
 
 <hr class="rule">
 
+<!-- BUILDING WITH AI -->
+<section id="ai-systems">
+  <div class="section-head">
+    <div class="eyebrow"><span class="kanji">第三章</span> Chapter Three — Building with AI</div>
+    <h2 class="section-title reveal">AI Builds</h2>
+    <p class="section-sub reveal">Applied AI tools to design and build systems that replaced manual spreadsheet workflows across budget planning, media coordination, and content production. Personal builds, demoed here with sample data.</p>
+  </div>
+
+  <div class="cos-grid reveal">
+    <div class="cos-card">
+      <video class="cos-video" src="assets/ai-build-budget-dashboard.mp4" autoplay muted loop playsinline></video>
+      <div class="body">
+        <div class="cos-tag">AI Build · Budget Planning</div>
+        <h3>Budget Allocation Dashboard</h3>
+        <div class="meta">Web Dashboard</div>
+        <p>A web dashboard for allocating and tracking advertising budgets across business lines — replacing manual spreadsheet tracking with a live, structured view.</p>
+      </div>
+    </div>
+
+    <div class="cos-card">
+      <video class="cos-video" src="assets/ai-build-media-registration.mp4" autoplay muted loop playsinline></video>
+      <div class="body">
+        <div class="cos-tag">AI Build · Media Coordination</div>
+        <h3>Film Media Registration System</h3>
+        <div class="meta">Registration System</div>
+        <p>Coordinates press and KOL invitations across film releases — registration, tracking, and status in one system instead of scattered spreadsheets.</p>
+      </div>
+    </div>
+
+    <div class="cos-card">
+      <video class="cos-video" src="assets/ai-build-content-system.mp4" autoplay muted loop playsinline></video>
+      <div class="body">
+        <div class="cos-tag">AI Build · Content Production</div>
+        <h3>Automated Content &amp; Artwork System</h3>
+        <div class="meta">Content Pipeline</div>
+        <p>Sources news from the web, writes and restyles articles, generates matching artwork, and outputs the finished piece formatted for either the website or social media.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
 <!-- TIMELINE -->
 <section id="timeline">
   <div class="section-head">
-    <div class="eyebrow"><span class="kanji">第三章</span> Chapter Three — Timeline</div>
+    <div class="eyebrow"><span class="kanji">第四章</span> Chapter Four — Timeline</div>
     <h2 class="section-title reveal">Selected Path, 2018 → 2026</h2>
     <p class="section-sub reveal">A condensed view of how the corporate and independent tracks have run in parallel.</p>
   </div>
