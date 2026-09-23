@@ -119,6 +119,9 @@
   .hero-desc strong{ color:var(--pink-deep); font-weight:600;}
 
   .stat-row{ display:flex; flex-wrap:wrap; gap:32px; margin-top:40px; }
+  .stat-block{ margin-bottom:52px; }
+  #corporate .stat-row{ margin-top:28px; }
+  .stat-block .film-list{ margin-top:24px; margin-bottom:0; }
   .stat{ min-width:100px; }
   .stat .num{ font-family:'Fraunces', serif; font-size:1.9rem; color:var(--blue-deep); font-weight:600; line-height:1;}
   .stat .lbl{ font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:6px;}
@@ -182,6 +185,8 @@
   .origin-figs .fn{ font-family:'Fraunces',serif; font-size:1.3rem; color:var(--pink-deep); font-weight:600;}
   .origin-figs .fl{ font-size:0.62rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); margin-top:3px;}
   .origin-links{ margin-top:16px; display:flex; flex-wrap:wrap; gap:10px;}
+  .links-caption{ font-size:0.72rem; font-style:italic; color:var(--muted); margin-top:18px; margin-bottom:8px; }
+  .links-caption + .origin-links, .links-caption + .work-links{ margin-top:0; }
   .origin-links a{
     font-size:0.72rem; text-decoration:none; color:var(--ink); opacity:0.85;
     border:1px solid var(--line-strong); border-radius:999px; padding:7px 14px 6px;
@@ -371,22 +376,24 @@
     <p class="section-sub reveal">Thai subsidiary of KADOKAWA. Own online advertising budgets across 6 business lines, lead a team of 5, and report directly to Director-level management.</p>
   </div>
 
-  <div class="stat-row reveal">
-    <button class="stat stat-toggle" data-see-more data-target="#business-lines-list" aria-expanded="false">
-      <div class="num">6<span class="stat-caret">▾</span></div><div class="lbl">Business Lines</div>
-    </button>
-    <div class="stat"><div class="num">5</div><div class="lbl">Team Led</div></div>
-    <div class="stat"><div class="num">+55%</div><div class="lbl">Organic Traffic</div></div>
-    <div class="stat"><div class="num">+83%</div><div class="lbl">Blended ROAS Growth YoY</div></div>
+  <div class="stat-block">
+    <div class="stat-row reveal">
+      <button class="stat stat-toggle" data-see-more data-target="#business-lines-list" aria-expanded="false">
+        <div class="num">6<span class="stat-caret">▾</span></div><div class="lbl">Business Lines</div>
+      </button>
+      <div class="stat"><div class="num">5</div><div class="lbl">Team Led</div></div>
+      <div class="stat"><div class="num">+55%</div><div class="lbl">Organic Traffic</div></div>
+      <div class="stat"><div class="num">+83%</div><div class="lbl">Blended ROAS Growth YoY</div></div>
+    </div>
+    <ul class="film-list" data-film-list id="business-lines-list" hidden>
+      <li><span class="ft">Ecommerce</span><span class="fd"><a href="https://www.phoenixnext.com/" target="_blank" rel="noopener">Website ↗</a></span></li>
+      <li><span class="ft">Movie Campaigns</span><span class="fd"><a href="https://www.facebook.com/phoenixnextmovie" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+      <li><span class="ft">Book Fairs &amp; Offline Events</span><span class="fd"><a href="https://www.facebook.com/Phoenixnext/posts/pfbid0csJzhk56TGWBSVo96FbuZhgFEtQNryLE2aCXMtfnGK97AzS1L8orE1NQuSDjVdP4l" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+      <li><span class="ft">Merchandise &amp; Sign Events</span><span class="fd"><a href="https://www.facebook.com/profile.php?id=61576625138800" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+      <li><span class="ft">Retail Store</span><span class="fd"><a href="https://www.facebook.com/profile.php?id=61582955608880" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+      <li><span class="ft">Ani-One POP-up Store</span><span class="fd"><a href="https://www.facebook.com/AniOneThailand/posts/pfbid0v5pV7yFcNgJZHhKYcMmbV4U2wfZMWkr6nJ6wriiipPBC42r2kowWKZUkGCA6j15Vl" target="_blank" rel="noopener">Facebook ↗</a></span></li>
+    </ul>
   </div>
-  <ul class="film-list" data-film-list id="business-lines-list" hidden style="margin-bottom:36px;">
-    <li><span class="ft">Ecommerce</span><span class="fd"><a href="https://www.phoenixnext.com/" target="_blank" rel="noopener">Website ↗</a></span></li>
-    <li><span class="ft">Movie Campaigns</span><span class="fd"><a href="https://www.facebook.com/phoenixnextmovie" target="_blank" rel="noopener">Facebook ↗</a></span></li>
-    <li><span class="ft">Book Fairs &amp; Offline Events</span><span class="fd"><a href="https://www.facebook.com/Phoenixnext/posts/pfbid0csJzhk56TGWBSVo96FbuZhgFEtQNryLE2aCXMtfnGK97AzS1L8orE1NQuSDjVdP4l" target="_blank" rel="noopener">Facebook ↗</a></span></li>
-    <li><span class="ft">Merchandise &amp; Sign Events</span><span class="fd"><a href="https://www.facebook.com/profile.php?id=61576625138800" target="_blank" rel="noopener">Facebook ↗</a></span></li>
-    <li><span class="ft">Retail Store</span><span class="fd"><a href="https://www.facebook.com/profile.php?id=61582955608880" target="_blank" rel="noopener">Facebook ↗</a></span></li>
-    <li><span class="ft">Ani-One POP-up Store</span><span class="fd"><a href="https://www.facebook.com/AniOneThailand/posts/pfbid0v5pV7yFcNgJZHhKYcMmbV4U2wfZMWkr6nJ6wriiipPBC42r2kowWKZUkGCA6j15Vl" target="_blank" rel="noopener">Facebook ↗</a></span></li>
-  </ul>
 
   <div class="origin-grid reveal">
     <div class="origin-card tint-blue">
@@ -416,6 +423,7 @@
         <div><div class="fn">3,162</div><div class="fl">2025 Orders</div></div>
         <div><div class="fn">~8.8</div><div class="fl">True ROAS</div></div>
       </div>
+      <div class="links-caption">Example campaigns (one of many):</div>
       <div class="origin-links">
         <a href="https://www.facebook.com/JulietPersia.TH/posts/pfbid0jQbdBcGNgQmyuYdAvYaunhiPsRC8TCfgWxpJSRsX5FQLqsMRCiHvFg3kJmN5cbMEl" target="_blank" rel="noopener">PERSIA</a>
         <a href="https://www.facebook.com/NoAnimeNoLifeTH/posts/pfbid02xG4ijoBpJF6SizjPUaS4a81Up3JrX7uSEM5AfHpjzkTEnH2XnVc1K9cuZnk2avGjl" target="_blank" rel="noopener">No Anime No Life</a>
@@ -445,6 +453,7 @@
         <div><div class="num">~500K</div><div class="lbl">Organic Views / Yr</div></div>
         <div><div class="num">20–50</div><div class="lbl">KOLs / Round</div></div>
       </div>
+      <div class="links-caption">Example campaigns (one of many):</div>
       <div class="work-links">
         <a href="https://www.facebook.com/CMYK.cosplay/posts/pfbid02M9HCu75CJSMreYGrbHJA5raGp5W9TUPVS7mYCS5yoniwbKZaXMJED6LetSaaBz9Jl" target="_blank" rel="noopener">CMYK Campaign Post</a>
         <a href="https://www.tiktok.com/@phoenix_next_official/video/7216653370604408090" target="_blank" rel="noopener">Viral TikTok Clip</a>
@@ -609,6 +618,7 @@
         <div><div class="num">400+</div><div class="lbl">Guests</div></div>
         <div><div class="num">1.17M฿</div><div class="lbl">Media Value</div></div>
       </div>
+      <div class="links-caption">Example campaigns (one of many):</div>
       <div class="work-links">
         <a href="https://www.youtube.com/watch?v=QFGiKBYnZTU" target="_blank" rel="noopener">YouTube Coverage</a>
         <a href="https://en.thairath.co.th/entertain/news/2931077" target="_blank" rel="noopener">Thairath Article</a>
@@ -652,6 +662,7 @@
         <div><div class="num">18</div><div class="lbl">Media Invited</div></div>
         <div><div class="num">14,262฿</div><div class="lbl">Media Value</div></div>
       </div>
+      <div class="links-caption">Example campaigns (one of many):</div>
       <div class="work-links">
         <a href="https://www.tiktok.com/@ploy.inanime/video/7649616728216898837" target="_blank" rel="noopener">KOL: ploy.inanime</a>
         <a href="https://www.tiktok.com/@framedoo_me/video/7649577448446741780" target="_blank" rel="noopener">KOL: framedoo_me</a>
@@ -681,6 +692,7 @@
         <div><div class="num">95,061</div><div class="lbl">Reactions</div></div>
         <div><div class="num">20,615</div><div class="lbl">Shares</div></div>
       </div>
+      <div class="links-caption">Example campaigns (one of many):</div>
       <div class="work-links">
         <a href="https://www.facebook.com/AniOneThailand/posts/pfbid02z9odvYPVQe19UDCP2PBwXqYcx6a47naMkpPV237zEy73RFYuezKSbT8pXbHmeacHl" target="_blank" rel="noopener">Facebook Post</a>
         <a href="https://www.facebook.com/reel/1400405042195887" target="_blank" rel="noopener">Facebook Reel</a>
